@@ -1,9 +1,9 @@
-var {mongoose} = require('./db/mongoose.js');
-var {ToDo} = require('./models/ToDo.js');
-var {Users} = require('./models/users.js');
-
 var express = require('express');
 var bodyParser = require('body-parser');
+
+var {mongoose} = require('./db/mongoose');
+var {ToDo} = require('./models/ToDo');
+var {User} = require('./models/users');
 
 var app = express();
 
@@ -13,13 +13,16 @@ app.post('/todos', (req, res) => {
   var todo = new ToDo({
     text: req.body.text
   });
+
   todo.save().then((doc) => {
     res.send(doc);
-  }, (err) => {
-    res.status(400).send(err);
+  }, (e) => {
+    res.status(400).send(e);
   });
 });
 
-app.listen(8080 , () => {
-  console.log('Started on port 8080');
+app.listen(3000, () => {
+  console.log('Started on port 3000');
 });
+
+module.exports = {app};

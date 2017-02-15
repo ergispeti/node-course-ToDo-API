@@ -1,5 +1,5 @@
 const dateformat = require('dateformat');
-const mongoose = require ('mongoose');
+const mongoose = require('mongoose');
 
 var randomDate = new Date();
 
