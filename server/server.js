@@ -21,8 +21,18 @@ app.post('/todos', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('Started on port 3000');
+app.get('/todos', (req, res) => {
+    ToDo.find().then((todos) => {
+      res.send({
+        todos: todos
+      });
+    }, (e) => {
+    res.status(400).send(e);
+    });
+});
+
+app.listen(8080, () => {
+  console.log('Started on port 8080');
 });
 
 module.exports = {app};
