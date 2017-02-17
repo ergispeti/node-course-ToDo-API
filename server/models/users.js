@@ -1,7 +1,7 @@
 const mongoose = require ('mongoose');
 
 
-var User = mongoose.model('Users', {
+var Users = mongoose.model('Users', {
   email : {
      type: String,
      required: true,
@@ -15,4 +15,4 @@ var User = mongoose.model('Users', {
 }
 });
 
-module.exports = {User};
+module.exports = {Users};
