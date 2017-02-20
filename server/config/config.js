@@ -1,4 +1,4 @@
-var env = process.env.NODE_ENV || 'development';
+var env = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || process.env.NODE_ENV || 'development';
 console.log('env ------ ', env);
 
 if(env === 'development'){
