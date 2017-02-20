@@ -71,7 +71,9 @@ app.post('/todos/:id', (req,res) => {
         text: req.body.text,
         _id:  req.body._id,
         completedAt: req.body.completedAt
-      }).save().then((doc) => {
+      });
+      
+      todo.save().then((doc) => {
         res.send(doc);
     }, (e) => {
       res.status(400).send();
