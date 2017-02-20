@@ -70,7 +70,7 @@ app.post('/todos/:id', (req,res) => {
       var todo = new ToDo({
         text: req.body.text,
         _id:  req.body._id,
-        completedAt = req
+        completedAt = req.body.completedAt
       }).save().then((doc) => {
         res.send(doc);
     }, (e) => {
