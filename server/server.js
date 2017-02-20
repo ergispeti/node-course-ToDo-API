@@ -72,7 +72,7 @@ app.post('/todos/:id', (req,res) => {
         _id:  req.body._id,
         completedAt: req.body.completedAt
       });
-      
+
       todo.save().then((doc) => {
         res.send(doc);
     }, (e) => {
@@ -80,7 +80,7 @@ app.post('/todos/:id', (req,res) => {
     }).catch((e) => {
       res.status(400).send();
     });
-   }
+  });
  }
 });
 
