@@ -1,8 +1,6 @@
 const dateformat = require('dateformat');
 const mongoose = require('mongoose');
 
-var randomDate = new Date();
-
 
 var ToDo = mongoose.model('ToDo', {
   text : {
@@ -15,9 +13,9 @@ var ToDo = mongoose.model('ToDo', {
      type: Boolean,
      default: false
   },
-  scheduledAt: {
+  completedAt: {
     type: String,
-    default: dateformat(randomDate, `dddd, mmmm dS, yyyy, h:MM:ss TT`)
+    default: null
   }
 });
 
