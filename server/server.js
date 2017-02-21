@@ -1,3 +1,5 @@
+require('./config/config');
+
 var _ = require ('lodash');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -78,32 +80,15 @@ app.delete('/todos/:id', (req,res) => {
    }
 });
 
-app.patch('/todos/:id', (req,res) => {
-  var id = req.params.id;
+app.post('/users', (req, res) => {
+  var body = _.pick(req.body, ['email', 'password']);
+  var user = new User(body);
 
-  var body = _.pick(req.body, ['text', 'completed']);
-
-  if (!ObjectID.isValid(id)) {
-    return res.status(404).send();
-  }
-
-  if (_.isBoolean(body.completed) && body.completed) {
-     body.completedAt = dateformat.getDate();
-   } else {
-     body.completed = false;
-     body.completedAt = null;
-   }
-
-   ToDo.findByIdAndUpdate(id, {$set: body}, {new: true}).then((todo) => {
-    if (!todo) {
-      return res.status(404).send();
-    }
-
-    res.send({todo});
+  user.save().then((user) => {
+    res.send(user);
   }).catch((e) => {
-    res.status(400).send();
+    res.status(400).send(e);
   })
-
 });
 
 app.listen(port, () => {
